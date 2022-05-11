@@ -12,14 +12,17 @@ useEffect(() => {
 }, [])
 async function load() {
   try {
+    // Requesting permission
     let {status} = await Location.requestForegroundPermissionsAsync();
 
     if(status != 'granted') {
       setErrorMessage('Access to location is neeeded to run the app')
       return
     }
+
     const location = await Location.getCurrentPositionAsync()
 
+    // declairing longitude and latitude values 
     const {latitude, longitude} = location.coords;
 
     alert(`latitude: ${latitude}, longitude : ${longitude}`)
@@ -30,7 +33,7 @@ async function load() {
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app! Hellofffg!</Text>
+      <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
     </View>
   );
